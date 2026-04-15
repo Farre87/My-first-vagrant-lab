@@ -36,6 +36,20 @@ Vagrant.configure("2") do |config|
     db.vm.provision "shell", inline: <<-SHELL
       apt-get update
       apt-get install -y postgresql
+      
+      # Brandvaggsinstallningar
+      # 1. Tillat SSH sa Vagrant inte tappar kontakten
+      ufw allow 22/tcp
+      
+      # 2. Tillat PostgreSQL (5432) BARA fran Webbservern
+      ufw allow from 192.168.56.10 to any port 5432
+      
+      # 3. Tillat ALL trafik fran Ansible-kontrollnoden (for hantering)
+      ufw allow from 192.168.56.12
+      
+      # 4. Aktivera brandvaggen
+      ufw --force enable
+      
       # Samma SSH-fix har
       sed -i 's/^PasswordAuthentication no/PasswordAuthentication yes/' /etc/ssh/sshd_config
       systemctl restart ssh
