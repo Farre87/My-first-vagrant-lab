@@ -16,6 +16,10 @@ Vagrant.configure("2") do |config|
     web.vm.provision "shell", inline: <<-SHELL
       apt-get update
       apt-get install -y apache2 curl
+      # Automatisera SSH-fixen 
+      sed -i 's/^PasswordAuthentication no/PasswordAuthentication yes/' /etc/ssh/sshd_config
+      systemctl restart ssh
+      echo 'vagrant:vagrant' | chpasswd
     SHELL
   end
 
@@ -32,6 +36,10 @@ Vagrant.configure("2") do |config|
     db.vm.provision "shell", inline: <<-SHELL
       apt-get update
       apt-get install -y postgresql
+      # Samma SSH-fix har
+      sed -i 's/^PasswordAuthentication no/PasswordAuthentication yes/' /etc/ssh/sshd_config
+      systemctl restart ssh
+      echo 'vagrant:vagrant' | chpasswd
     SHELL
   end
 
