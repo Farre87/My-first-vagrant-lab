@@ -58,4 +58,31 @@ Vagrant.configure("2") do |config|
       apt-get install -y ansible
     SHELL
   end   
+
+  # --- CLIENT VM ---
+  config.vm.define "client" do |client|
+    client.vm.hostname = "client-pc"
+    client.vm.network "private_network", ip: "192.168.56.13"
+    
+    # Port forwarding: oppna port 8080 pa din fysiska dator 
+    # och skicka trafiken till port 80 pa denna virtuella maskin.
+    client.vm.network "forwarded_port", guest: 80, host: 8080
+
+    client.vm.provider "virtualbox" do |vb|
+       vb.memory = 1024
+       vb.cpus = 1
+    end
+
+    # Brandvagg (UFW)
+    client.vm.provision "shell", inline: <<-SHELL
+      apt-get update
+      apt-get install -y ufw apache2
+      # Tillat SSH (port 22) 
+      ufw allow 22/tcp
+      # Tillat webbtrafik
+      ufw allow 80/tcp
+      # Aktivera brandvaggen
+      ufw --force enable
+    SHELL
+  end
 end
