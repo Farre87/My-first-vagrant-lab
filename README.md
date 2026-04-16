@@ -24,10 +24,11 @@ Nätverket består av följande noder (alla kör Ubuntu 22.04):
 2. Klona detta repository:
    ```bash
    git clone [https://github.com/Farre87/my-first-vagrant-lab.git](https://github.com/Farre87/my-first-vagrant-lab.git)
-3. Starta maskinerna (stå i projektmappen): vagrant up
-4. Kör Ansible-konfigurationen från kontrollnoden:
-5. vagrant ssh control
-6. ansible-playbook -i hosts setup.yml
+3. Starta maskinerna (stå i projektmappen):
+4. vagrant up
+5. Kör Ansible-konfigurationen från kontrollnoden:
+6. vagrant ssh control
+7. ansible-playbook -i hosts setup.yml
    
 # Lärdomar 
 *  ** Vagrant & VirtualBox: Skapa och hantera multipla VM-miljöer.
