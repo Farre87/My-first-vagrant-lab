@@ -1,0 +1,22 @@
+---
+- name: Konfigurera min webbplats
+  hosts: webservers
+  become: yes
+  tasks:
+    - name: Se till att Apache är installerat
+      apt:
+        name: apache2
+        state: present
+
+    - name: Kopiera min hemsida till rätt mapp
+      copy:
+        src: index.html
+        dest: /var/www/html/index.html
+        owner: www-data
+        group: www-data
+        mode: '0644'
+
+    - name: Starta om Apache för att vara säker
+      service:
+        name: apache2
+        state: restarted
