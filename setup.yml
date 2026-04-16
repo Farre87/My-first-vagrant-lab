@@ -1,0 +1,18 @@
+---
+- name: Grundläggande konfiguration av alla noder
+  hosts: all
+  become: yes
+  tasks:
+    - name: Uppdatera paketlistan (apt update)
+      apt:
+        update_cache: yes
+
+    - name: Installera htop
+      apt:
+        name: htop
+        state: present
+
+    - name: Skapa en test-fil på skrivbordet
+      copy:
+        content: "Denna maskin styrs av Ansible!\n"
+        dest: /home/vagrant/ansible_halsning.txt
