@@ -26,14 +26,13 @@ Nätverket består av följande noder (alla kör Ubuntu 22.04):
    git clone [https://github.com/Farre87/my-first-vagrant-lab.git](https://github.com/Farre87/my-first-vagrant-lab.git)
 3. Starta maskinerna (stå i projektmappen): vagrant up
 4. Kör Ansible-konfigurationen från kontrollnoden:
-5. 
-   **vagrant ssh control
-   **ansible-playbook -i hosts setup.yml
+5. vagrant ssh control
+6. ansible-playbook -i hosts setup.yml
    
-*Lärdomar
-   ** Vagrant & VirtualBox: Skapa och hantera multipla VM-miljöer.
-   ** Networking: Förståelse för TCP/IP, interna nätverk och portar.
-   ** Linux Administration: Brandväggskonfiguration (UFW) och tjänstehantering (systemd).
-   ** Ansible: Skriva YAML-playbooks för effektiv systemautomation.
-   ** Git & GitHub: Professionellt arbetsflöde med commits och dokumentation.
+# Lärdomar 
+*  ** Vagrant & VirtualBox: Skapa och hantera multipla VM-miljöer.
+*  ** Networking: Förståelse för TCP/IP, interna nätverk och portar.
+*  ** Linux Administration: Brandväggskonfiguration (UFW) och tjänstehantering (systemd).
+* ** Ansible: Skriva YAML-playbooks för effektiv systemautomation.
+* ** Git & GitHub: Professionellt arbetsflöde med commits och dokumentation.
    
